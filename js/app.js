@@ -118,16 +118,38 @@ $("#resume-camera").click(function () {
 
 $("#exit-app").click(async function () {
   removeCapture();
+  $.LoadingOverlay("show", { text: "Sending photo to printer..." });
+
+  setTimeout(function () {
+    $.LoadingOverlay("text", "Please wait...");
+  }, 5000);
+
+  setTimeout(function () {
+    $.LoadingOverlay("text", "Sending photo to printer...");
+  }, 10000);
+
+  setTimeout(function () {
+    $.LoadingOverlay("text", "Please wait...");
+  }, 15000);
 
   const creds = btoa("user:Pr!ntMy$e1f!e");
-  const respo = await fetch("https://recieptprinter.ngrok.io/image", {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${creds}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ dataURL: picture }),
-  });
+
+  try {
+    const respo = await fetch("https://recieptprinter.ngrok.io/image", {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${creds}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ dataURL: picture }),
+    });
+  } catch (e) {
+    alert(
+      "Error sending photo to printer. The photo booth could be offline or overloaded. Please try again later."
+    );
+    console.log(error);
+    console.log(respo);
+  }
 
   $("#webcam-switch").prop("checked", false).change();
 

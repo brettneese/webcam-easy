@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>webcam-js</title>
+    <title>Photo Booth!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
     <link
@@ -22,6 +22,7 @@
     />
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./js/webcam-easy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
   </head>
   <body>
     <main id="webcam-app">
@@ -58,8 +59,8 @@
             <audio id="snapSound" src="audio/snap.wav" preload="auto"></audio>
           </div>
           <div id="cameraControls" class="cameraControls">
-            <a href="#" id="exit-app" title="Exit App" class="d-none"
-              ><i class="material-icons">exit_to_app</i></a
+            <a href="#" id="exit-app" title="Send to Printer" class="d-none"
+              ><i class="material-icons">print</i></a
             >
             <a href="#" id="take-photo" title="Take Photo"
               ><i class="material-icons">camera_alt</i></a
