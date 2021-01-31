@@ -77,6 +77,7 @@ $("#take-photo").click(function () {
   console.log(picture);
   document.querySelector("#download-photo").href = picture;
   afterTakePhoto();
+  window.location.replace("https://www.twitch.tv/brettneese");
 });
 
 function beforeTakePhoto() {
