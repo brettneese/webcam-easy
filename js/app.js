@@ -77,7 +77,6 @@ $("#take-photo").click(function () {
   console.log(picture);
   document.querySelector("#download-photo").href = picture;
   afterTakePhoto();
-  window.location.replace("https://www.twitch.tv/brettneese");
 });
 
 function beforeTakePhoto() {
@@ -130,9 +129,7 @@ $("#exit-app").click(async function () {
     body: JSON.stringify({ dataURL: picture }),
   });
 
-  console.log(respo);
-
-  console.log(picture);
-
   $("#webcam-switch").prop("checked", false).change();
+
+  window.location.replace("https://www.twitch.tv/brettneese");
 });
