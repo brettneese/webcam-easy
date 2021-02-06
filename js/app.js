@@ -1,6 +1,8 @@
 const webcamElement = document.getElementById("webcam");
 const canvasElement = document.getElementById("canvas");
 const snapSoundElement = document.getElementById("snapSound");
+const creds = btoa("user:Pr!ntMy$e1f!e");
+
 let picture;
 
 const webcam = new Webcam(
@@ -9,6 +11,24 @@ const webcam = new Webcam(
   canvasElement,
   snapSoundElement
 );
+
+$(document).ready(async function () {
+  try {
+    const respo = await fetch("https://recieptprinter.ngrok.io/status", {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${creds}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log(respo);
+  } catch (e) {
+    alert("The photo booth is currently offline. Please try again later.");
+    console.log(error);
+    console.log(respo);
+  }
+});
 
 $("#webcam-switch").change(function () {
   if (this.checked) {
@@ -131,8 +151,6 @@ $("#exit-app").click(async function () {
   setTimeout(function () {
     $.LoadingOverlay("text", "Please wait...");
   }, 15000);
-
-  const creds = btoa("user:Pr!ntMy$e1f!e");
 
   try {
     const respo = await fetch("https://recieptprinter.ngrok.io/image", {
